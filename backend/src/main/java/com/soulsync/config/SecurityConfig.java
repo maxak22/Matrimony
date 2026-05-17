@@ -47,6 +47,8 @@ public class SecurityConfig {
                 ))
             )
             .authorizeHttpRequests(auth -> auth
+                // CORS pre-flight requests must never be blocked by Spring Security
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // WebSocket handshake (JWT validated by WebSocketAuthInterceptor on STOMP CONNECT)
                 .requestMatchers("/ws/**").permitAll()
                 // Public auth endpoints
