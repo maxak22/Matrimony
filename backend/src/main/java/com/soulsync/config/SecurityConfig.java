@@ -60,6 +60,8 @@ public class SecurityConfig {
                 ).permitAll()
                 // Registration
                 .requestMatchers(HttpMethod.POST, "/api/profiles").permitAll()
+                // Photo upload — needed during registration before JWT exists
+                .requestMatchers("/api/upload/**").permitAll()
                 // Public success stories (landing page)
                 .requestMatchers(HttpMethod.GET, "/api/stories/**").permitAll()
                 // Everything else requires a valid JWT
