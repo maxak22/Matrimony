@@ -19,6 +19,8 @@ api.interceptors.request.use(
     const token = localStorage.getItem('soulsync_token')
     if (token) config.headers.Authorization = `Bearer ${token}`
     config.headers['X-Tenant-ID'] = window.__TENANT_ID__ ?? 'soulsync'
+    const profileId = localStorage.getItem('soulsync_profile_id')
+    if (profileId) config.headers['X-Profile-Id'] = profileId
 
     // For FormData (file uploads) let axios/browser set Content-Type with
     // the correct multipart boundary — never force application/json.
